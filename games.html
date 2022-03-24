@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@200&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+    integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+    integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+    crossorigin="anonymous"></script>
+
+
+  <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
+  <title>Games - Jiaming Wang</title>
+
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tags.css">
+
+  <script src="js/modalScript.js"></script>
+  <script src="js/navMovement.js"></script>
+  <script src="https://kit.fontawesome.com/757df6b00f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="nav" style="position: sticky; top: 0; z-index: 1;"></div>
+
+  <a id="title"></a>
+
+  <div class="sectionImage" style="text-align: center; margin: 0;">
+    <div
+      style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/games.png'); width: 100%; height: 100vh;  background-position: center; background-size: 6000px, 6000px;"
+      class="parallax inset">
+      <div class="center blurBackdrop">
+        <h1 class="titleMedium">Games</h1>
+        <p class="textBig">All of the games I've finished.</p>
+      </div>
+    </div>
+
+  </div>
+  
+  <br>
+
+  <div class="section">
+    <h1 class="titleMedium2 offset">My Games</h1>
+    <p class="textBig">Some of my successful game projects.</p>
+  </div>
+
+  <a id="games"></a>
+  <br>
+
+  <div style="margin: 5px; overflow: hidden;" class="inset">
+    <div class="row" style="margin-top: 10px;">
+
+      <div class="column">
+        <div
+          style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url(images/game_thumbnails/click_the_diamond.png);     " 
+          class="bg-image" onclick="OpenModal('myModal');">
+          <h1 class="imageTitle">Click the Diamond</h1>
+          <br>
+          <div class="tags">
+            <div class="normal-tag old" onclick="event.stopPropagation();">
+              <p></p>
+            </div>
+            <div class="normal-tag online" onclick="event.stopPropagation();">
+              <p></p>
+            </div>
+            <div class="normal-tag finished" onclick="event.stopPropagation();">
+              <p></p>
+            </div>
+            
+          </div>
+        
+          <img src="images/game_thumbnails/click_the_diamond.png" alt="" class="columnIMG" >
+          
+
+        </div>
+
+        <div
+          style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url(images/game_thumbnails/game5.png);    "
+          class="bg-image" onclick="OpenModal('myModal2');">
+          <h1 class="imageTitle">Clicker</h1>
+          <br>
+          <div class="tags">
+            <div class="normal-tag old" onclick="event.stopPropagation();">
+              <p></p>
+            </div>
+            <div class="normal-tag online" onclick="event.stopPropagation();">
+              <p></p>
+            </div>
+            <div class="normal-tag unfinished" onclick="event.stopPropagation();">
+              <p></p>
+            </div>
+            <div class="normal-tag discontinued" onclick="event.stopPropagation();">
+              <p></p>
+            </div>
+          </div>
+          <img src="images/game_thumbnails/game5.png" alt="" class="columnIMG">
+        </div>
+
+        <div
+          style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url(images/game_thumbnails/game8.png);     "
+          class="bg-image">
+          <h1 class="imageTitle">Bear Escape</h1>
+          <img src="images/game_thumbnails/game8.png" alt="" class="columnIMG">
+        </div>
+
+
+      </div>
+
+      <div class="column">
+        <div
+          style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/game_thumbnails/game2.png);     "
+          class="bg-image">
+          <h1 class="imageTitle">Jewlery Maker</h1>
+          <img src="images/game_thumbnails/game2.png" alt="" class="columnIMG">
+        </div>
+
+        <div
+          style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/game_thumbnails/game6.png);     "
+          class="bg-image">
+          <h1 class="imageTitle">Modified Snake</h1>
+          <img src="images/game_thumbnails/game6.png" alt="" class="columnIMG">
+        </div>
+
+        <div
+          style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/game_thumbnails/jump.png);     "
+          class="bg-image">
+          <h1 class="imageTitle">Jump!</h1>
+          <img src="images/game_thumbnails/jump.png" alt="" class="columnIMG">
+        </div>
+
+
+      </div>
+      <div class="column">
+        <div
+          style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/game_thumbnails/game3.png);     "
+          class="bg-image">
+          <h1 class="imageTitle">Match the Fruits</h1>
+          <img src="images/game_thumbnails/game3.png" alt="" class="columnIMG">
+        </div>
+
+        <div
+          style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/game_thumbnails/game7.png);     "
+          class="bg-image">
+          <h1 class="imageTitle">Modified Pong</h1>
+          <img src="images/game_thumbnails/game7.png" alt="" class="columnIMG">
+        </div>
+
+        <div
+          style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/game_thumbnails/icon.png);     "
+          class="bg-image">
+          <h1 class="imageTitle">Cube Slider</h1>
+          <img src="images/game_thumbnails/icon.png" alt="" class="columnIMG">
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+  </div>
+
+
+  <!-- Modals -->
+
+  <div id="myModal" class="modal_">
+
+    <!-- Modal content -->
+    <div class="modal-content_" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.671), rgba(0, 0, 0, 0.877)),
+     url('images/game_thumbnails/click_the_diamond.png');">
+      
+      <div class="modal-nav">
+        <span class="close_">&times;</span>
+        <h1 style="text-align: center;padding: 20px; font-size: 200%;">Click the Diamond</h1>
+       
+        <button onclick="window.location.href = 'projects/games/game.html';" class="playButton">Play</button>
+      </div>
+
+      <div class=" blurBackdrop center2" style="height: 100%;">
+        <div class="modalText">
+          <p>Click the Diamond is a very old game I made while following a tutorial. This is very old and I don't intend to update it.</p>
+          <br>
+          <h2>How to play</h2>
+          <p>After pressing the play button, try to click on the diamonds before they change places.</p>
+          <p>If you click on a diamond you will gain points.</p>
+          <p>If you click on dirt you will lose points.</p>
+          <br>
+          <span>Tags: </span>
+            <div class="normal-tag old">
+              <p></p>
+            </div>
+            <div class="normal-tag online">
+              <p></p>
+            </div>
+            <div class="normal-tag finished">
+              <p></p>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="myModal2" class="modal_">
+
+    <!-- Modal content -->
+    <div class="modal-content_" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.671), rgba(0, 0, 0, 0.877)),
+     url('images/game_thumbnails/game5.png');">
+      
+      <div class="modal-nav">
+        <span class="close_">&times;</span>
+        <h1 style="text-align: center;padding: 20px; font-size: 200%;">Clicker</h1>
+       
+        <button onclick="window.location.href = 'projects/games/game5.html';" class="playButton">Play</button>
+      </div>
+
+      <div class=" blurBackdrop center2" style="height: 100%;">
+        <div class="modalText">
+          <p>Clicker was a unfinished game that I was making that was discontinued because I didn't have enough time.</p>
+          <br>
+          <h2>How to play</h2>
+          <p>Click the button in the middle. You can buy upgrades on the side.</p>
+          <br>
+          <span>Tags: </span>
+          <div class="normal-tag old" >
+            <p></p>
+          </div>
+          <div class="normal-tag online" >
+            <p></p>
+          </div>
+          <div class="normal-tag unfinished" >
+            <p></p>
+          </div>
+          <div class="normal-tag discontinued" >
+            <p></p>
+          </div>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="footer"></a>
+  <div id="footer"></div>
+  <script src="js/globalTags.js"></script>
+</body>
+
+</html>

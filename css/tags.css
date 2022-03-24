@@ -1,0 +1,51 @@
+.normal-tag {
+    background-color: rgba(255, 255, 255, 0.2);
+    text-align: center;
+    margin: 2px;
+    border-radius: 20px;
+    display: inline-block;
+    border: rgba(255, 255, 255, 0.777) solid 3px;
+    transition: 0.5s;
+}
+.normal-tag p {
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    font-size: 0.85em;
+    border-radius: 20px;
+    margin: 0;
+    padding: 5px;
+}
+.normal-tag:hover {
+    background-color: rgba(255, 255, 255, 0.842);
+    text-align: center;
+
+    margin: 2px;
+    border-radius: 20px;
+    display: inline-block;
+    border: rgba(255, 255, 255, 0.777) solid 2px;
+}
+
+.tags {
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+.normal-tag.old p::after {
+    content:"Old";
+}
+
+.normal-tag.online p::after {
+    content:"Online";
+}
+
+.normal-tag.unfinished p::after {
+    content:"Unfinished";
+}
+
+.normal-tag.finished p::after {
+    content:"Finished";
+}
+
+.normal-tag.discontinued p::after {
+    content:"Discontinued";
+}
