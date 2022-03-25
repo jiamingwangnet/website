@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Snake</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <script src="../js/detectMobile.js"></script>
+</head>
+
+<body style="background-color: lime;">
+    <h1 id="score">score: 0</h1>
+    <canvas id="canvas" width="990" height="500"></canvas>
+    <br>
+    <div class="center incanvas" id="buttons">
+        <button class="gameButton" onclick="gameHandler.up()"><i class="fas fa-caret-up "
+                onclick="gameHandler.up()"></i></button>
+        <br>
+        <button class="gameButton centerBlank" onclick="gameHandler.left()"><i class="fas fa-caret-left"
+                onclick="gameHandler.left()"></i></button>
+        <button class="gameButton" onclick="gameHandler.right()"><i class="fas fa-caret-right"
+                onclick="gameHandler.right()"></i></button>
+        <br>
+        <button class="gameButton" onclick="gameHandler.down()"><i class="fas fa-caret-down "
+                onclick="gameHandler.down()"></i></button>
+
+
+    </div>
+    <a href="../games.html">back</a>
+    <script>
+        let game = {
+            ticknum: 0,
+
+            timer: null,
+
+            board: [
+                "#################################",
+                "#                               #",
+                "#                 #             #",
+                "#    #                          #",
+                "#            #                # #",
+                "#                               #",
+                "#                               #",
+                "#            #          #       #",
+                "#     #                         #",
+                "#                             # #",
+                "#                #  #           #",
+                "#                               #",
+                "#       #                  #    #",
+                "#                               #",
+                "#################################"
+            ],
+            fruit: [
+                { x: 1, y: 1 }
+            ],
+            nope: [
+                { x: 1, y: 1 }
+            ],
+            score: 0,
+            
+            tick: function () {
+                window.clearTimeout(game.timer)
+                game.ticknum++;
+                if (game.ticknum % 10) {
+                    game.addRandFruit();
+                    game.addRandNope();
+                }
+                let end = snake.move();
+                if (end == "no no no GAME OVER HAHAHAHAHAHAHAHAHAHHAHAHAHHAAHHAHAHHAHHAHAHAHAHHAHAHHAHAHAHA") {
+                    alert(end + "!! Your score: " + game.score);
+                    return;
+                }
+
+                document.getElementById("score").innerText = game.score;
+                blocksStuff.game();
+                game.timer = window.setTimeout("game.tick()", 200);
+            },
+            isEmpty: function (loc) {
+                return game.board[loc.y][loc.x] == ' ';
+            },
+            isWall: function (loc) {
+                return game.board[loc.y][loc.x] == '#';
+            },
+            isFruit: function (loc) {
+                for (let fruitnum = 0; fruitnum < game.fruit.length; fruitnum++) {
+                    let fruit = game.fruit[fruitnum];
+                    if (loc.x == fruit.x && loc.y == fruit.y) {
+                        game.fruit.splice(fruitnum, 1);
+                        return true;
+                    }
+                }
+                return false;
+            },
+            isNope: function (loc) {
+                for (let nopenum = 0; nopenum < game.nope.length; nopenum++) {
+                    let nope = game.nope[nopenum];
+                    if (loc.x == nope.x && loc.y == nope.y) {
+                        game.nope.splice(nopenum, 1);
+                        return true;
+                    }
+                }
+                return false;
+            },
+            isSnake: function (loc) {
+                for (let sPart = 0; sPart < snake.parts.length; sPart++) {
+                    let part = snake.parts[sPart];
+                    if (loc.x == part.x && loc.y == part.y) {
+                        return true;
+                    }
+                }
+                return false;
+            },
+            addRandFruit: function () {
+                let randY = Math.floor(Math.random() * game.board.length) + 0;
+                let randX = Math.floor(Math.random() * game.board[randY].length) + 0;
+                let randLoc = { x: randX, y: randY };
+                if (game.isEmpty(randLoc) && !game.isFruit(randLoc)) {
+                    game.fruit.push(randLoc);
+                }
+            },
+            addRandNope: function () {
+                let randY = Math.floor(Math.random() * game.board.length) + 0;
+                let randX = Math.floor(Math.random() * game.board[randY].length) + 0;
+                let randLoc = { x: randX, y: randY };
+                if (game.isEmpty(randLoc) && !game.isNope(randLoc)) {
+                    game.nope.push(randLoc);
+                }
+            },
+            pause: function () {
+                alert("paused");
+                return;
+            }
+        };
+
+
+
+        let blocksStuff = {
+            canvas: document.getElementById("canvas"),
+            squareSize: 30,
+            draw: function (ctx) {
+                let currentYoffset = 0;
+                game.board.forEach(function fillLine(line) {
+                    line = line.split('');
+                    let currentXoffset = 0;
+                    line.forEach(function create(thing) {
+                        if (thing == "#") {
+                            let img = new Image();
+                            img.src = 'img/wall.bmp';
+                            img.onload = function () {
+                                let pattern = ctx.createPattern(this, "repeat");
+                                ctx.fillStyle = pattern;
+                                ctx.fill();
+                            };
+                            ctx.fillRect(currentXoffset, currentYoffset, blocksStuff.squareSize, blocksStuff.squareSize);
+                        }
+                        currentXoffset += blocksStuff.squareSize;
+                    })
+                    currentYoffset += blocksStuff.squareSize;
+                })
+            },
+
+            drawThing: function (ctx, thing, color) {
+                thing.forEach(function drawPart(part) {
+                    let Xlocation = part.x * blocksStuff.squareSize;
+                    let Ylocation = part.y * blocksStuff.squareSize;
+                    ctx.fillStyle = color;
+                    ctx.fillRect(Xlocation, Ylocation, blocksStuff.squareSize, blocksStuff.squareSize);
+                })
+            },
+
+            game: function () {
+                let ctx = blocksStuff.canvas.getContext("2d");
+                ctx.clearRect(0, 0, blocksStuff.canvas.width, blocksStuff.canvas.height);
+                blocksStuff.draw(ctx);
+                blocksStuff.drawThing(ctx, game.fruit, "red");
+                blocksStuff.drawThing(ctx, game.nope, "black");
+                blocksStuff.drawThing(ctx, snake.parts, "darkcyan");
+            }
+        };
+
+
+
+        let snake = {
+            parts: [
+                { x: 4, y: 2 },
+                { x: 3, y: 2 },
+                { x: 2, y: 2 }
+            ],
+
+            facing: "E",
+            nextPlace: function () {
+                let head = snake.parts[0];
+                let targX = head.x;
+                let targY = head.y;
+                targY = snake.facing == "N" ? targY - 1 : targY;
+                targY = snake.facing == "S" ? targY + 1 : targY;
+                targX = snake.facing == "W" ? targX - 1 : targX;
+                targX = snake.facing == "E" ? targX + 1 : targX;
+                return { x: targX, y: targY };
+            },
+            move: function () {
+                let place = snake.nextPlace();
+                if (game.isWall(place) || game.isSnake(place)) {
+                    return "no no no GAME OVER HAHAHAHAHAHAHAHAHAHHAHAHAHHAAHHAHAHHAHHAHAHAHAHHAHAHHAHAHAHA";
+                }
+
+                if (game.isEmpty(place)) {
+                    snake.parts.unshift(place);
+                    snake.parts.pop();
+                }
+
+                if (game.isFruit(place)) {
+                    snake.parts.unshift(place);
+                    game.score++;
+                }
+                if (game.isNope(place)) {
+                    let randN = Math.floor(Math.random() * 2) + 1;
+                    if (randN == 1) {
+                        snake.parts.pop(place);
+                        game.score--;
+                    }
+
+                    if (randN == 2) {
+                        snake.parts.unshift(place);
+                        snake.parts.unshift(place);
+                        snake.parts.unshift(place);
+                        game.score += 3;
+                    }
+                }
+            }
+        };
+
+
+
+        blocksStuff.game()
+        let gameHandler = {
+            keyInput: function (event) {
+                let key = event.key.toLowerCase();
+                let direction = snake.facing;
+                if (key == "w" && snake.facing != "S") direction = "N";
+                if (key == "a" && snake.facing != "E") direction = "W";
+                if (key == "s" && snake.facing != "N") direction = "S";
+                if (key == "d" && snake.facing != "W") direction = "E";
+                if (key == "p") {
+                    game.pause();
+                }
+                snake.facing = direction;
+                game.tick();
+            },
+            up: function () {
+                if (snake.facing != "S") { direction = "N"; }
+                snake.facing = direction;
+                game.tick();
+            },
+            left: function () {
+                if (snake.facing != "E") { direction = "W"; }
+                snake.facing = direction;
+                game.tick();
+            },
+            down: function () {
+                if (snake.facing != "N") { direction = "S"; }
+                snake.facing = direction;
+                game.tick();
+            },
+            right: function () {
+                if (snake.facing != "W") { direction = "E"; }
+                snake.facing = direction;
+                game.tick();
+            },
+            startGame: function () {
+                window.addEventListener("keypress", gameHandler.keyInput, false);
+                game.tick();
+            }
+        };
+
+
+        if(detectMobile() == false) {
+            document.getElementById("buttons").style.display = "none";
+        }
+        gameHandler.startGame();
+    </script>
+</body>
+
+</html>

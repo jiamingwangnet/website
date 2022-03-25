@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="../js/detectMobile.js"></script>
+    <title>jewelry maker</title>
+    <style>
+        body {
+            background-color: rgb(177, 135, 0);
+        }
+        #jewelry {
+            display: inline-block;
+        }
+
+        #points {
+            float: right;
+        }
+        .right {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 id="money">Money: $0</h2>
+    <button class="gameButtonBoth" onclick="addMoney();">Add Money</button>
+    <h2 id="points">Points: 0</h2>
+    <button class="gameButtonBoth right" onclick="points2Money();">Exchange points to money</button>
+    <script src="js/game2.js"></script>
+    <br>
+    <br><br>
+    <div class="center">
+            <h1 style="color:darkturquoise;">Diamonds</h1>
+            <button class="gameButtonBoth" onclick="buyDiamond();">Buy diamond - $99900</button>
+            <h2 id="diamonds">Diamonds: 0</h2>
+
+            <h1 style="color:goldenrod;">Gold</h1>
+            <button class="gameButtonBoth" onclick="buyGold();">Buy gold - $10000</button>
+            <h2 id="gold">Gold: 0</h2>
+
+            <h1 style="color:gray;">Tools</h1>
+            <button class="gameButtonBoth" onclick="buyTools();">Buy tools - $998</button>
+            <h2 id="tools">Tools: 0</h2>
+            <h2 id="toolHealth">HP: 0</h2>
+    </div>
+    <button class="gameButtonBoth" onclick="makeJewelry();">Make jewelry</button>
+    <button class="gameButtonBoth" onclick="sellJewelry()">Send Jewelry $2000</button>
+    <div class="center">
+            <div id="jewelry">
+                
+            </div>
+    </div>
+    <br>
+    <br>
+    <a href="../games.html">back</a>
+</body>
+
+</html>

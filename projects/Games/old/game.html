@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Game</title>
+  <link rel="stylesheet" type="text/css" href="../css/home.css" />
+  <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <script src="../js/detectMobile.js"></script>
+  <style>
+    body {
+      background-color: cyan;
+    }
+  </style>
+  <style>
+    #board {
+      background: url('img/game1back.png');
+      background-size: cover;
+      border: 1px solid black;
+      height: 599px;
+      width: 899px;
+    }
+
+    .character {
+      background: url('img/dirt.png');
+      background-size: cover;
+      width: 120px;
+      height: 120px;
+      padding: 10px;
+      margin: 10px;
+      float: left;
+      display: none;
+    }
+
+    .thief {
+      background: url('img/diamond.png');
+      background-size: cover;
+    }
+
+
+    .hidden {
+      display: none;
+    }
+
+    .visible {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <input type="button" value="Play" onclick="startGame();"/>
+  <div id="board">
+    <div class="character">1</div>
+    <div class="character">2</div>
+    <div class="character">3</div>
+    <div class="character">4</div>
+    <div class="character">5</div>
+    <div class="character">6</div>
+    <div class="character">7</div>
+    <div class="character">8</div>
+    <div class="character">9</div>
+    <div class="character">10</div>
+    <div class="character">11</div>
+    <div class="character">12</div>
+    <div class="character">13</div>
+    <div class="character">14</div>
+    <div class="character">15</div>
+
+  </div>
+  <script>
+    function startGame() {
+      gameLoop();
+    }
+    var loops = 0;
+    var peopleVisible = false;
+    var gameScore = 0;
+    function gameLoop() {
+      peopleVisible = !peopleVisible;
+      createCharacters();
+      loops++;
+      if (loops < 90) {
+        let timeout = setTimeout(gameLoop, peopleVisible ? 1000 : 29);
+      }
+      else {
+        alert("You scored " + gameScore);
+        window.location.href = "game.html"
+      }
+    }
+    function createCharacters() {
+      var board = document.getElementById("board");
+      var classToSet = peopleVisible ? "character visible" : "character hidden";
+      for (var index = 0; index < 15; index++) {
+        board.children[index].className = classToSet;
+        board.children[index].innerHTML = "";
+        board.children[index].onclick = function () {
+          gameScore += -2;
+          if(gameScore <= -1) {
+            alert("Oops!");
+            window.location.href = "game.html"
+            return;
+          }
+        }
+      }
+      var randomNumber = Math.floor(Math.random() * 15) + 1;
+      board.children[randomNumber - 1].innerHTML = "";
+      board.children[randomNumber - 1].onclick = function () {
+        gameScore++;
+      }
+      board.children[randomNumber - 1].className = classToSet + " thief";
+    }
+
+  </script>
+  <p>full version</p>
+  <a href="../games.html">back</a>
+</body>
+
+</html>

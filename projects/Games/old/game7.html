@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PONG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <script src="../js/detectMobile.js"></script>
+</head>
+
+<body>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <h2 id="you">You: 0</h2>
+    <h2 id="ai">AI: 0</h2>
+    <br>
+    <div class="incanvas" id="buttons">
+        <button class="gameButton" ontouchstart="player.up()"><i class="fas fa-caret-up "
+            ontouchstart="player.up()"></i></button>
+        <button class="gameButton" ontouchstart="player.down()"><i class="fas fa-caret-down "
+            ontouchstart="player.down()"></i></button>
+
+
+    </div>
+    <a href="../games.html">back</a>
+    <script>
+        let canvas = document.getElementById("canvas");
+        let ctx = canvas.getContext("2d");
+        let aiPoints = 0;
+        let PlayerPoints = 0;
+        function pad(x, y, width, height) {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.speedMod = 0;
+            this.collidedWith = function (ball) {
+                let padLeftWall = this.x;
+                let padRightWall = this.x + this.width;
+                let padTopWall = this.y;
+                let padBottomWall = this.y + this.height;
+                if (ball.x > padLeftWall
+                    && ball.x < padRightWall
+                    && ball.y > padTopWall
+                    && ball.y < padBottomWall) {
+                    return true;
+                }
+                return false;
+            };
+            this.move = function (keyCode) {
+                let nextY = this.y;
+                if (keyCode == 40) {
+                    nextY += 5;
+                    this.speedMod = 1.5;
+                }
+                if (keyCode == 38) {
+                    nextY += -5;
+                    this.speedMod = 1.5;
+                } else {
+                    this.speedMod = 0;
+                }
+                nextY = nextY < 0 ? 0 : nextY;
+                nextY = nextY + this.height > 480 ? 480 - this.height : nextY;
+                this.y = nextY;
+            }
+            this.up = function() {
+                let nextY = this.y;
+                nextY += -5;
+                this.speedMod = 1.5;
+                nextY = nextY < 0 ? 0 : nextY;
+                nextY = nextY + this.height > 480 ? 480 - this.height : nextY;
+                this.y = nextY;
+            }
+            this.down = function() {
+                let nextY = this.y;
+                nextY += 5;
+                this.speedMod = 1.5;
+                nextY = nextY < 0 ? 0 : nextY;
+                nextY = nextY + this.height > 480 ? 480 - this.height : nextY;
+                this.y = nextY;
+            }
+        }
+        let player = new pad(5, 200, 25, 100);
+        let ai = new pad(610, 200, 25, 100);
+        let block = new pad(320, 210, 25, 100);
+        let ball = {
+            x: 310, y: 230, radius: 10, xSpeed: 2, ySpeed: 0,
+            reverseX: function () {
+                this.xSpeed *= -1;
+            },
+            reverseY: function () {
+                this.ySpeed *= -1;
+            },
+            reset: function() {
+                this.x = 320;
+                this.y = 240;
+                this.xSpeed = 2;
+                this.ySpeed = 0;
+            },
+            isBouncing: function() {
+                return ball.ySpeed != 0;
+            },
+            modXSpeedBy: function(mod) {
+                mod = this.xSpeed < 0 ? mod * -1 : mod;
+                let nextVal =  this.xSpeed + mod;
+                nextVal = Math.abs(nextVal) > 9 ? 9 : nextVal;
+                this.xSpeed = nextVal;
+            },
+            modYSpeedBy: function(mod) {
+                mod = this.ySpeed < 0 ? mod * -1 : mod;
+                this.ySpeed += mod;
+            }
+        };
+        function createBall(ball) {
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.radius, 0, 2 * Math.PI, false);
+            ctx.fillStyle = "lime";
+            ctx.fill();
+        }
+
+        function createPad(pad) {
+            ctx.fillStyle = "blue";
+            ctx.fillRect(pad.x, pad.y, pad.width, pad.height);
+        }
+
+        function tick() {
+            update();
+            draw();
+            window.setTimeout("tick()", 1000 / 60);
+        }
+        function update() {
+            ball.x += ball.xSpeed;
+            ball.y += ball.ySpeed;
+            if(ball.x < 0) {
+                ball.reset();
+                aiPoints ++;
+                document.getElementById("ai").innerHTML = "AI: " + aiPoints;
+            }
+            if( ball.x > 640) {
+                ball.reset();
+                PlayerPoints ++;
+                document.getElementById("you").innerHTML = "You: " + PlayerPoints;
+            }
+            if(ball.y <= 0 || ball.y >= 400) {
+                ball.reverseY();
+            }
+            let collidedWithPlayer = player.collidedWith(ball)
+            let collidedWithAi = ai.collidedWith(ball)
+            let collidedWithBlock = block.collidedWith(ball)
+            if (collidedWithPlayer || collidedWithAi || collidedWithBlock) {
+                ball.reverseX()
+                ball.modXSpeedBy(0.25);
+                let speedUpVal = collidedWithPlayer ? player.speedMod : ai.speedMod;
+                ball.modYSpeedBy(speedUpVal);
+            }
+            for (let keyCode in held) {
+                player.move(keyCode);
+            }
+            let aiMid = ai.y + (ai.height / 2);
+            if(aiMid < ball.y) {
+                ai.move(40);
+            }
+            if(aiMid > ball.y) {
+                ai.move(38);
+            }
+            let BMid = block.y + (block.height / 2);
+            if(BMid < ball.y) {
+                block.move(40);
+            }
+            if(BMid > ball.y) {
+                block.move(38);
+            }
+        }
+       
+        function draw() {
+            ctx.fillStyle = "cyan";
+            ctx.fillRect(0, 0, 640, 480);
+            createPad(player);
+            createPad(ai);
+            createPad(block)
+            createBall(ball);
+        }
+        let held = {}
+        window.addEventListener("keydown", function (info) {
+            held[event.keyCode] = true;
+        }, false);
+        window.addEventListener("keyup", function (info) {
+            delete held[event.keyCode];
+        }, false)
+        window.addEventListener("keydown", function (event) {
+            if(event.keyCode == 80) {
+                    alert("paused");
+                    return;
+            }
+        }, false)
+        if(detectMobile() == false) {
+            document.getElementById("buttons").style.display = "none";
+        }
+        tick()
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>number clicker</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link href="../NES.css-master/css/nes.css" rel="stylesheet" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Orbitron:900" rel="stylesheet">
+	<link rel="stylesheet" href="../css/main.css">
+		<style>
+		body {
+			background-color: #73ff00;
+		}
+
+		p {
+			font-weight: bolder;
+			font-size: 20px;
+			display: inline-block;
+		}
+
+		a {
+			color: #003d66;
+			text-decoration: none;
+			font-family: 'Orbitron', sans-serif;
+
+		}
+	</style>
+</head>
+
+<body onload="checkIfGreen(); setValueOfThing(); readValue();">
+	<br />
+	<audio id="myAudio">
+		<source src="../sounds/cha.wav" type="audio/wav">
+		Your browser does not support the audio element.
+	  </audio>
+	<h2 id="highScore">last score: 2</h2><h2 style="text-align: right;" id="myDiamonds">diamonds: 0</h2>
+	<br/>
+	<h2 style="text-align: right;" id="myChests">chests: 0</h2>
+	<button class="btn is-rounded" style="margin-left:1400px;" id="chestButton">add chest</button>
+	<br />
+	<p style="opacity: 0;">p</p>
+	<p style="opacity: 0;">p</p>
+	<p style="opacity: 0;">p</p>
+	<h2 id="showValue" style="text-align: right;">2<br />added Value</h2>
+	<div style="margin-right: 1120px;" class="container is-rounded">
+		<p onclick="add20ToValue()" id="a">+20//200 points</p>
+		<br />
+		<p onclick="add100ToValue()" id="b">+100//300 points</p>
+		<br />
+		<p onclick="add130ToValue()" id="c">+130//400000 points</p>
+		<br />
+	</div>
+	<div style="text-align: center;">
+		<h2 id="number">2</h2>
+		<button onclick="addToValue(); setValueOfThing(); readValue(); checkChest()" class="btn is-primary">add value</button>
+	</div>
+	<div style="margin-right: 1120px;" class="container is-rounded">
+		<p onclick="add200ToValue()" id="d">+200//5000000 points</p>
+		<br />
+		<p onclick="add900ToValue()" id="e">+900 and diamond//10000000 points</p>
+		<br />
+		<p onclick="add1000ToValue()" id="f">+1000//120000000 points</p>
+		<br />
+		<p onclick="add90000ToValue()" id="g">+90000//990000000 points</p>
+		<br />
+		<p onclick="add999000ToValue()" id="h">+999000//10000000000000 points</p>
+	</div>
+	<script src="js/game5.js"></script>
+
+	<section>
+		<p>making in progress...</p>
+	</section>
+<a href="../games.html">back</a>
+</body>
+
+</html>

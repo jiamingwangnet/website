@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bear Ecsape</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <script src="../js/detectMobile.js"></script>
+</head>
+
+<body>
+    <canvas id="canvas" width="1400" height="700"></canvas>
+    <div class="incanvas" id="buttons">
+        <button class="gameButton" onclick="player.up()"><i class="fas fa-caret-up "
+            onclick="player.up()"></i></button>
+        </div>
+        <a href="../games.html">back</a>
+    <script>
+        let canvas = document.getElementById("canvas");
+        let ctx = canvas.getContext("2d");
+        let s = document.getElementById("s");
+        function floor(x, height) {
+            this.x = x;
+            this.width = 2000;
+            this.height = height;
+        };
+        function block(x) {
+            this.x = x;
+            this.width = 125;
+            this.height = 250;
+        };
+        let world = {
+            height: 700,
+            width: 1400,
+            gravity: 9,
+            highestFloor: 240,
+            speed: 5,
+            traveled: 0,
+            maxSpeed: Infinity,
+            passed: 0,
+            autoScroll: true,
+            floorTiles: [
+                new floor(0, 140)
+            ],
+            blocks: [
+                new block(50)
+            ],
+            stop: function () {
+                this.autoScroll = false;
+                location.reload();
+            },
+            moveFloor: function () {
+                for (index in this.floorTiles) {
+                    let tile = this.floorTiles[index];
+                    tile.x -= this.speed;
+                    this.traveled += this.speed;
+                }
+            },
+            addTiles: function () {
+                if (this.floorTiles.length >= 10) {
+                    return;
+                }
+                let lastTile = this.floorTiles[this.floorTiles.length - 1];
+                let jumpHeight = lastTile.height + player.height * 3.5;
+                if (jumpHeight > this.highestFloor) {
+                    jumpHeight = this.highestFloor;
+                }
+                let randHeight = Math.floor(Math.random() * jumpHeight) + player.height;
+                let leftVal = (lastTile.x + lastTile.width);
+                let next = new floor(leftVal, randHeight);
+                this.floorTiles.push(next);
+            },
+            clearTiles: function () {
+                for (index in this.floorTiles) {
+                    if (this.floorTiles[index].x <= -this.floorTiles[index].width) {
+                        this.floorTiles.splice(index, 1);
+                        this.passed++;
+                        if (this.passed % 3 == 0 && this.speed < this.maxSpeed) {
+                            this.speed++;
+                            this.gravity-= 0.5;
+                        }
+                    }
+                }
+            },
+            getFloorDist: function (playerX) {
+                for (index in this.floorTiles) {
+                    let tile = this.floorTiles[index];
+                    if (tile.x <= playerX && tile.x + tile.width >= playerX) {
+                        return tile.height;
+                    }
+                }
+                return -1;
+            },
+            tick: function () {
+                if (!this.autoScroll) {
+                    return;
+                }
+                this.clearTiles();
+                this.addTiles();
+                this.moveFloor();
+            },
+            draw: function () {
+                ctx.fillStyle = "cyan"
+                ctx.fillRect(0, 0, this.width, this.height)
+                for (index in this.floorTiles) {
+                    let tile = this.floorTiles[index];
+                    let y = world.height - tile.height;
+                    ctx.fillStyle = "lime";
+                    ctx.fillRect(tile.x, y, tile.width, tile.height);
+                }
+                for (index in this.blocks) {
+                    let block = this.blocks[index];
+                    let tile = this.floorTiles[index];
+                    let y = world.height - block.height - tile.height;
+                    ctx.fillStyle = "brown"
+                    ctx.fillRect(block.x, y, block.width, block.height);
+                }
+                ctx.fillStyle = "green";
+                ctx.font = "28px Impact";
+                ctx.fillText("Speed: " + this.speed, 10, 40);
+                ctx.fillText("Traveled: " + this.traveled, 10, 75);
+            }
+        };
+        let player = {
+            x: 500,
+            y: 340,
+            height: 60,
+            width: 30,
+            downForce: world.gravity,
+            jumpHeight: 0,
+            getDistFor: function (x) {
+                let dAplatUnder = world.getFloorDist(x);
+                return world.height - this.y - dAplatUnder;
+            },
+            gravity: function () {
+                this.aboveGroundLevel = world.getFloorDist(this.x);
+                let righDist = this.getDistFor(this.x + this.width);
+                if (this.aboveGroundLevel < 0 || righDist < 0) {
+                    world.stop()
+                }
+
+            },
+            processGrav: function () {
+                this.y += this.downForce;
+                let floorH = world.getFloorDist(this.x, this.width)
+                let topYPlat = world.height - floorH;
+                if (this.y > topYPlat) {
+                    this.y = topYPlat;
+                }
+                if (this.downForce < 0) {
+                    this.jumpHeight += (this.downForce * -1);
+                    if (this.jumpHeight >= player.height * 6) {
+                        this.downForce = world.gravity;
+                        this.jumpHeight = 0;
+                    }
+                }
+            },
+            keyPress: function (key) {
+                let floorHeight = world.getFloorDist(this.x, this.width);
+                let onFloor = floorHeight == (world.height - this.y);
+                if (onFloor) {
+                    this.downForce = -8;
+                }
+            },
+            tick: function () {
+                this.processGrav();
+                this.gravity()
+            },
+            drawMe: function () {
+                ctx.fillStyle = "blue";
+                ctx.fillRect(player.x, player.y - this.height, this.width, this.height);
+            },
+            up: function() {
+                let floorHeight = world.getFloorDist(this.x, this.width);
+                let onFloor = floorHeight == (world.height - this.y);
+                if (onFloor) {
+                    this.downForce = -8;
+                }
+            }
+        };
+        window.addEventListener("keypress", function (key) { player.keyPress(key); }, false);
+        function tick() {
+            player.tick()
+            world.tick();
+            world.draw();
+            player.drawMe();
+            window.setTimeout("tick()", 1000 / Infinity);
+        }
+        if(detectMobile() == false) {
+            document.getElementById("buttons").style.display = "none";
+        }
+        tick();
+    </script>
+    <!--this game runs at infinte frames per second!! lol-->
+</body>
+
+</html>
