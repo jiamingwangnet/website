@@ -111,8 +111,21 @@
 
         <div
           style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url(images/game_thumbnails/game8.png);     "
-          class="bg-image">
+          class="bg-image" onclick="OpenModal('myModal3');">
           <h1 class="imageTitle">Bear Escape</h1>
+          <br>
+          <div class="tags">
+            <div class="normal-tag old" onclick="event.stopPropagation();">
+              <p></p>
+            </div>
+            <div class="normal-tag online" onclick="event.stopPropagation();">
+              <p></p>
+            </div>
+            <div class="normal-tag finished" onclick="event.stopPropagation();">
+              <p></p>
+            </div>
+          </div>
+
           <img src="images/game_thumbnails/game8.png" alt="" class="columnIMG">
         </div>
 
@@ -250,6 +263,44 @@
             <p></p>
           </div>
 
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="myModal3" class="modal_">
+
+    <!-- Modal content -->
+    <div class="modal-content_" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.671), rgba(0, 0, 0, 0.877)),
+     url('images/game_thumbnails/game8.png');">
+
+      <div class="modal-nav">
+        <span class="close_">&times;</span>
+        <h1 style="text-align: center;padding: 20px; font-size: 200%;">Bear Escape</h1>
+
+        <button onclick="window.location.href = 'projects/Games/old/game8.html';" class="playButton">Play</button>
+      </div>
+
+      <div class=" blurBackdrop center2" style="height: 100%;">
+        <div class="modalText">
+          <p>This was a game I made following a tutorial on a book. It is very simple but I don't plan on upgrading it.
+          </p>
+          <br>
+          <h2>How to play</h2>
+          <p>Press space to jump over the edges. If you are on mobile, a button should be there for jumping.</p>
+          <p>The speed will increase over time. If you get hit, the game will restart automatically.</p>
+          <br>
+          <span>Tags: </span>
+          <div class="normal-tag old">
+            <p></p>
+          </div>
+          <div class="normal-tag online">
+            <p></p>
+          </div>
+          <div class="normal-tag finished">
+            <p></p>
+          </div>
         </div>
       </div>
     </div>
