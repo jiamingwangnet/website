@@ -30,6 +30,7 @@
 
   <script src="js/modalScript.js"></script>
   <script src="js/navMovement.js"></script>
+  <script src="js/itemDisplay.js"></script>
   <script src="https://kit.fontawesome.com/757df6b00f.js" crossorigin="anonymous"></script>
 </head>
 
@@ -63,77 +64,44 @@
   <div style="margin: 5px; overflow: hidden;" class="inset">
     <div class="row" style="margin-top: 10px;">
 
-      <div class="column">
-        <div
-          style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url(images/project_thumbnails/party_screen.png);     " 
-          class="bg-image" onclick="OpenModal('myModal');">
-          <h1 class="imageTitle">Party Screen</h1>
-          <br>
-          <div class="tags">
-            <div class="normal-tag online" onclick="event.stopPropagation();">
-              <p></p>
-            </div>
-            <div class="normal-tag unfinished" onclick="event.stopPropagation();">
-              <p></p>
-            </div>
-            
-          </div>
-        
-          <img src="images/project_thumbnails/party_screen.png" alt="" class="columnIMG" >
-          
-
-        </div>
+      <div class="column" id="column_0">
 
       </div>
-      <div class="column">
-       
+      <div class="column" id="column_1">
+
       </div>
-      <div class="column">
-       
-      </div>
-  </div>
+      <div class="column" id="column_2">
 
-  <!-- Modals -->
-
-  <div id="myModal" class="modal_">
-
-    <!-- Modal content -->
-    <div class="modal-content_" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.671), rgba(0, 0, 0, 0.877)),
-     url('images/project_thumbnails/party_screen.png');">
-
-      <div class="modal-nav">
-        <span class="close_">&times;</span>
-        <h1 style="text-align: center;padding: 20px; font-size: 200%;">Party Screen</h1>
-
-        <button onclick="window.location.href = 'projects/Party-screen/screen.html';" class="playButton">Play</button>
-      </div>
-
-      <div class=" blurBackdrop center2" style="height: 100%;">
-        <div class="modalText">
-          <p>Party screen is a thing I make that flashes different colours. It simulates what it would be like at a party.</p>
-          <br>
-          <h2>How to use</h2>
-          <p>Press the start button under the title, a settings screen should pop up.</p>
-          <p>The music should be a link to a youtube video or playlist.</p>
-          <p>After changing the settings, press the "set" button at the bottom left corner of the pop-up</p>
-          <p>The screen should be flashing at the set bpm.</p>
-          <p>To change the settings, click the settings buttion at the bottom left of the screen.</p>
-          <br>
-          <span>Tags: </span>
-          <div class="normal-tag online">
-            <p></p>
-          </div>
-          <div class="normal-tag unfinished">
-            <p></p>
-          </div>
-
-        </div>
       </div>
     </div>
-  </div>
 
-  <div id="footer"></div>
-  <script src="js/globalTags.js"></script>
+    <!-- Modals -->
+
+    <div id="modals">
+      
+    </div>
+
+    <script>
+      // item creator
+
+      const items = [
+        new Item("Party Screen", 'images/project_thumbnails/party_screen.png', ["online", "unfinished"], `
+            <p>Party screen is a thing I make that flashes different colours. It simulates what it would be like at a party.</p>
+            <br>
+            <h2>How to use</h2>
+            <p>Press the start button under the title, a settings screen should pop up.</p>
+            <p>The music should be a link to a youtube video or playlist.</p>
+            <p>After changing the settings, press the "set" button at the bottom left corner of the pop-up</p>
+            <p>The screen should be flashing at the set bpm.</p>
+            <p>To change the settings, click the settings buttion at the bottom left of the screen.</p>`,
+             "projects/Party-screen/screen.html"),
+      ];
+
+      SplitBetweenColumns(items, "column");
+    </script>
+
+    <div id="footer"></div>
+    <script src="js/globalTags.js"></script>
 </body>
 
 </html>
