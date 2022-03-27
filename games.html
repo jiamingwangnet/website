@@ -61,15 +61,16 @@
   <a id="games"></a>
   <br>
 
+  <h2 style="text-align: center; font-size: 1.8em; margin: 10px;">My old games. Some of them might be broken.</h2>
+  
   <div style="margin: 5px; overflow: hidden;" class="inset">
     <div class="row" style="margin-top: 10px;">
 
-      <div class="column" id="column_0">
+      <div class="column oldGames" id="column_0">
       </div>
-
-      <div class="column" id="column_1">
+      <div class="column oldGames" id="column_1">
       </div>
-      <div class="column" id="column_2">
+      <div class="column oldGames" id="column_2">
       </div>
 
   </div>
@@ -83,7 +84,7 @@
   </div>
 
   <script>
-    const games = [
+    const gamesOld = [
       new Item("Click the Diamond", "images/game_thumbnails/click_the_diamond.png", ["old", "online", "finished"], 
       `<p>Click the Diamond is a very old game I made while following a tutorial. This is very old and I don't intend
             to update it.</p>
@@ -160,7 +161,7 @@
           'projects/Games/old/cubeSlider/cubeSlider.html'),
     ];
 
-    SplitBetweenColumns(games, "column");
+    SplitBetweenColumns(gamesOld, "oldGames");
   </script>
 
   <a id="footer"></a>
