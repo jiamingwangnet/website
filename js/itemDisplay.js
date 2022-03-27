@@ -11,14 +11,17 @@ class Item {
         // generate item
         this.item = document.createElement("div");
         this.item.classList.add("bg-image");
-        this.item.style = `background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url(${backgroundImage});`;
+        this.item.style = `background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),  url(${backgroundImage});`;
         this.item.onclick = () => {OpenModal(name);};
+
+        const blurContainer = document.createElement("div");
+        blurContainer.style.backdropFilter = "blur(10px)";
 
         const title = document.createElement("h1");
         title.innerText = name;
         title.classList.add("imageTitle");
 
-        this.item.append(title, document.createElement("br"));
+        blurContainer.append(title, document.createElement("br"));
 
         const tagContainer = document.createElement("div");
         tagContainer.classList.add("tags");
@@ -35,13 +38,15 @@ class Item {
             tagContainer.append(tagElement);
         }
 
-        this.item.appendChild(tagContainer);
+        blurContainer.appendChild(tagContainer);
 
         const image = document.createElement("img");
         image.src = backgroundImage;
         image.classList.add("columnIMG");
 
-        this.item.appendChild(image);
+        blurContainer.appendChild(image);
+
+        this.item.appendChild(blurContainer);
 
         // generate popup
         this.popup = document.createElement("div");
