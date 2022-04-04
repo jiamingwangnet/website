@@ -52,8 +52,6 @@ function load() {
             let text = result.data.Item.messages;
             messages = text;
 
-          
-
             for (let index in text) {
                 let messageText = JSON.parse(text[index]);
 

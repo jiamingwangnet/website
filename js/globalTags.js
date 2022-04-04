@@ -14,6 +14,9 @@ document.querySelector("#nav").innerHTML = `
     <li class="nav-item">
       <a class="nav-link" href="projects.html">Projects</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="projects/Chat/chat.html">Chat</a>
+    </li>
   </ul>
 
 </div>
