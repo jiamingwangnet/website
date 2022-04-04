@@ -61,107 +61,133 @@
   <a id="games"></a>
   <br>
 
-  <h2 style="text-align: center; font-size: 1.8em; margin: 10px;">My old games. Some of them might be broken.</h2>
-  
   <div style="margin: 5px; overflow: hidden;" class="inset">
     <div class="row" style="margin-top: 10px;">
 
-      <div class="column oldGames" id="column_0">
+      <div class="column games" id="column_0">
       </div>
-      <div class="column oldGames" id="column_1">
+      <div class="column games" id="column_1">
       </div>
-      <div class="column oldGames" id="column_2">
+      <div class="column games" id="column_2">
       </div>
 
+    </div>
   </div>
+
+  <h2 style="text-align: center; font-size: 1.8em; margin: 10px;">My old games. Some of them might be broken.</h2>
+
+  <div style="margin: 5px; overflow: hidden;" class="inset">
+    <div class="row" style="margin-top: 10px;">
+
+      <div class="column oldGames" id="column_0_old">
+      </div>
+      <div class="column oldGames" id="column_1_old">
+      </div>
+      <div class="column oldGames" id="column_2_old">
+      </div>
+
+    </div>
   </div>
 
 
   <!-- Modals -->
 
-  
+
   <div id="modals">
   </div>
 
   <script>
     const gamesOld = [
-      new Item("Click the Diamond", "images/game_thumbnails/click_the_diamond.png", ["old", "online", "finished"], 
-      `<p>Click the Diamond is a very old game I made while following a tutorial. This is very old and I don't intend
+      new Item("Click the Diamond", "images/game_thumbnails/click_the_diamond.png", ["old", "online", "finished"],
+        `<p>Click the Diamond is a very old game I made while following a tutorial. This is very old and I don't intend
             to update it.</p>
           <br>
           <h2>How to play</h2>
           <p>After pressing the play button, try to click on the diamonds before they change places.</p>
           <p>If you click on a diamond you will gain points.</p>
-          <p>If you click on dirt you will lose points.</p>`, 
-          'projects/Games/old/game.html'),
-       new Item("Clicker", "images/game_thumbnails/game5.png", ["old", "online", "unfinished", "discontinued"], 
-       `<p>Clicker was a unfinished game that I was making that was discontinued because I didn't have enough time.
+          <p>If you click on dirt you will lose points.</p>`,
+        'projects/Games/old/game.html'),
+      new Item("Clicker", "images/game_thumbnails/game5.png", ["old", "online", "unfinished", "discontinued"],
+        `<p>Clicker was a unfinished game that I was making that was discontinued because I didn't have enough time.
           </p>
           <br>
           <h2>How to play</h2>
           <p>Click the button in the middle. You can buy upgrades on the side.</p>`,
-          'projects/Games/old/game5.html'),
-        new Item("Bear Escape", "images/game_thumbnails/game8.png", ["old", "online", "finished"], 
+        'projects/Games/old/game5.html'),
+      new Item("Bear Escape", "images/game_thumbnails/game8.png", ["old", "online", "finished"],
         `<p>This was a game I made following a tutorial on a book. It is very simple but I don't plan on upgrading it.
           </p>
           <br>
           <h2>How to play</h2>
           <p>Press space to jump over the edges. If you are on mobile, a button should be there for jumping.</p>
           <p>The speed will increase over time. If you get hit, the game will restart automatically.</p>`,
-          'projects/Games/old/game8.html'),
+        'projects/Games/old/game8.html'),
 
-          new Item("Jewlery Maker", "images/game_thumbnails/game2.png", ["old", "online", "finished"], 
-          `<p>This was the first game I made. The version here was an updated version I made a few years ago.
+      new Item("Jewlery Maker", "images/game_thumbnails/game2.png", ["old", "online", "finished"],
+        `<p>This was the first game I made. The version here was an updated version I made a few years ago.
           </p>
           <br>
           <h2>How to play</h2>
           <p>Click the add money button</p>
           <p>Once you get enough money, you can buy the materials needed</p>`,
-          'projects/Games/old/game2.html'
-          ),
-          new Item("Modified Snake", "images/game_thumbnails/game6.png", ["old", "online", "finished"], 
-          `<p>This was a game I made following a tutorial. It is similar to snake but with a few modifications. The center has some blocks and there are also black apples that can take or give you points.
+        'projects/Games/old/game2.html'
+      ),
+      new Item("Modified Snake", "images/game_thumbnails/game6.png", ["old", "online", "finished"],
+        `<p>This was a game I made following a tutorial. It is similar to snake but with a few modifications. The center has some blocks and there are also black apples that can take or give you points.
           </p>
           <br>
           <h2>How to play</h2>
           <p>Use onscreen buttons or W A S D keys to move</p>
           <p>A red apple will add to your length and a black one will subtract or add from your length</p>`,
-          'projects/Games/old/game6.html'),
-          new Item("Jump!", "images/game_thumbnails/jump.png", ["old", "finished"], 
-          `<p>This was a game I made to test exporting to an android phone. It is a simple game where you have to jump over the blocks.
+        'projects/Games/old/game6.html'),
+      new Item("Jump!", "images/game_thumbnails/jump.png", ["old", "finished"],
+        `<p>This was a game I made to test exporting to an android phone. It is a simple game where you have to jump over the blocks.
           </p>
           <br>
           <h2>How to play</h2>
           <p>Tap the screen to jump</p>
           <p>Try not to get hit</p>`,
-          'projects/Games/old/jump/jump.html'),
-          new Item("Match the Fruits", "images/game_thumbnails/game3.png", ["old", "online", "finished"], 
-          `<p>A simple matching game. The fruits are randomly generated and you have to match them.
+        'projects/Games/old/jump/jump.html'),
+      new Item("Match the Fruits", "images/game_thumbnails/game3.png", ["old", "online", "finished"],
+        `<p>A simple matching game. The fruits are randomly generated and you have to match them.
           </p>
           <br>
           <h2>How to play</h2>
           <p>Press on a tile, it will display a fruit.</p>
           <p>Click on another tile, if the fruits are the same, they will disappear.</p>`,
-          'projects/Games/old/game3.html'),
-          new Item("Modified Pong", "images/game_thumbnails/game7.png", ["old", "online", "finished"], 
-          `<p>A simple pong game, but I added some things
+        'projects/Games/old/game3.html'),
+      new Item("Modified Pong", "images/game_thumbnails/game7.png", ["old", "online", "finished"],
+        `<p>A simple pong game, but I added some things
           </p>
           <br>
           <h2>How to play</h2>
           <p>Use the arrow keys to move</p>
           <p>Hit the ball to the end of the other side, don't let the ball go pass your paddle.</p>`,
-          'projects/Games/old/game7.html'),
-          new Item("Cube Slider", "images/game_thumbnails/icon.png", ["old", "finished"], 
-          `<p>A game made with unity. Slide the cube and avoid the black blocks.
+        'projects/Games/old/game7.html'),
+      new Item("Cube Slider", "images/game_thumbnails/icon.png", ["old", "finished"],
+        `<p>A game made with unity. Slide the cube and avoid the black blocks.
           </p>
           <br>
           <h2>How to play</h2>
           <p>Slide the cube left or right to avoid the black blocks</p>
           <p>If you get hit, the level restarts</p>`,
-          'projects/Games/old/cubeSlider/cubeSlider.html'),
+        'projects/Games/old/cubeSlider/cubeSlider.html'),
     ];
 
     SplitBetweenColumns(gamesOld, "oldGames");
+
+    const gamesNew = [
+      new Item("Dungeon Man", "images/game_thumbnails/dungeon_man.png", ['unfinished'],
+        `<p>A dungeon crawler game I am working on. Kill monsters to move to the next stage.</p>
+          <br>
+          <h2> How to play </h2>
+          <p> Use W A S D to move the player</p>
+          <p> Use the mouse to aim and click to attack </p>
+          <p> Kill enough monsters to move to the next stage</p>`,
+        'projects/Games/dungeon.html'),
+    ];
+
+    SplitBetweenColumns(gamesNew, "games");
   </script>
 
   <a id="footer"></a>
