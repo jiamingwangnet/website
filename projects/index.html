@@ -21,16 +21,16 @@
     crossorigin="anonymous"></script>
 
 
-  <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="../images/icon.ico" type="image/x-icon">
   <title>Projects - Jiaming Wang</title>
 
-  <link rel="stylesheet" href="css/animations.css">
-  <link rel="stylesheet" href="css/mainstyle.css">
-  <link rel="stylesheet" href="css/tags.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/mainstyle.css">
+  <link rel="stylesheet" href="/css/tags.css">
 
-  <script src="js/modalScript.js"></script>
-  <script src="js/navMovement.js"></script>
-  <script src="js/itemDisplay.js"></script>
+  <script src="/js/modalScript.js"></script>
+  <script src="/js/navMovement.js"></script>
+  <script src="/js/itemDisplay.js"></script>
   <script src="https://kit.fontawesome.com/757df6b00f.js" crossorigin="anonymous"></script>
 </head>
 
@@ -39,7 +39,7 @@
 
   <div class="sectionImage" style="text-align: center; margin: 0;">
     <div
-      style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/testing.png'); width: 100%; height: 100vh;  background-position: center; background-size: 6000px, 6000px;"
+      style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/testing.png'); width: 100%; height: 100vh;  background-position: center; background-size: 6000px, 6000px;"
       class="parallax inset">
       <div class="center blurBackdrop">
         <h1 class="titleMedium">Projects</h1>
@@ -85,7 +85,7 @@
       // item creator
 
       const items = [
-        new Item("Party Screen", 'images/project_thumbnails/party_screen.png', ["online", "unfinished"], `
+        new Item("Party Screen", '/images/project_thumbnails/party_screen.png', ["online", "unfinished"], `
             <p>Party screen is a thing I make that flashes different colours. It simulates what it would be like at a party.</p>
             <br>
             <h2>How to use</h2>
@@ -94,21 +94,21 @@
             <p>After changing the settings, press the "set" button at the bottom left corner of the pop-up</p>
             <p>The screen should be flashing at the set bpm.</p>
             <p>To change the settings, click the settings buttion at the bottom left of the screen.</p>`,
-             "projects/Party-screen/screen.html"),
-        new Item("Monke Bean", 'images/project_thumbnails/monke_bean.png', ["online"], `
+             "Party-screen/screen.html"),
+        new Item("Monke Bean", '/images/project_thumbnails/monke_bean.png', ["online"], `
             <p>The infinite monkey theorem states that a monkey typing for a infinite amount of time will eventually type out any given text.<br> This project uses this theorem to get the monkey to type "bean"</p>
             <br>
             <h2>How to use</h2>
             <p>Select your character set, each one has a different chance of giving "bean"</p>
             <p>Press start and wait for bean to get typed</p>`,
-             "projects/Monke-Bean/src/monke.html"),
+             "Monke-Bean/src/monke.html"),
       ];
 
       SplitBetweenColumns(items, "column");
     </script>
 
     <div id="footer"></div>
-    <script src="js/globalTags.js"></script>
+    <script src="/js/globalTags.js"></script>
 </body>
 
 </html>
