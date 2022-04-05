@@ -15,7 +15,7 @@ document.querySelector("#nav").innerHTML = `
       <a class="nav-link" href="/projects/">Projects</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/projects/Chat/chat.html">Chat</a>
+      <a class="nav-link" href="/chat/">Chat</a>
     </li>
   </ul>
 
