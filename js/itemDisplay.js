@@ -69,14 +69,20 @@ class Item {
         navTitle.innerText = name;
         navTitle.style = "text-align: center;padding: 20px; font-size: 200%;";
 
-        const playButton = document.createElement("button");
-        playButton.classList.add("playButton");
+        const playButton = document.createElement("a");
 
-        playButton.addEventListener("click", () => {
-            window.location.href = redirect;
-        });
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("playButton");
 
-        playButton.innerText = "Play";
+        playButton.href = redirect;
+        playButton.target = "_blank";
+
+        wrapper.innerText = "Play";
+
+        playButton.style.color = "white";
+        playButton.style.textAlign = "center";
+
+        playButton.append(wrapper);
 
         modalNav.append(closeButton, navTitle, playButton);
 
