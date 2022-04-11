@@ -60,7 +60,7 @@ function load() {
     
                     messagesContainer.appendChild(messageObject.message);
                     
-                    
+                    myDiv.scrollTo(0, myDiv.scrollHeight);
                 } else {
                     
 
@@ -105,7 +105,7 @@ let dateTime = new Date()
 class Message {
     constructor(message, date, month, year, hour, min, name) {
         this.message = document.createElement("div");
-        this.message.innerHTML = `<h2 style="padding: 3px; overflow-wrap: break-word; z-index: 1;"><span style="color: red; overflow-wrap: break-word;z-index: 1;">${name}</span> at ${hour}:${min} ${date}/${(month + 1)}/${year}</h3><p style="padding:5px; overflow-wrap: break-word; z-index: -1;">${message}</p>`
+        this.message.innerHTML = `<h2 style="padding: 3px; overflow-wrap: break-word; z-index: 1;"><span style="color: #2585c9; overflow-wrap: break-word;z-index: 1;">${name}</span> at ${hour}:${min} ${date}/${(month + 1)}/${year}</h3><p style="padding:5px; overflow-wrap: break-word; z-index: -1;">${message}</p>`
         this.message.className = "message";
     }
 }
@@ -115,6 +115,15 @@ function sendMessage() {
     let name = document.querySelector("#name").value == "" ? document.querySelector("#name").placeholder : document.querySelector("#name").value;
     document.querySelector("#name").disabled = true;
 
+    const nameElement = document.querySelector("#name");
+    if(localStorage.getItem("name") == null) 
+    {
+        if(nameElement.value != nameElement.placeholder && nameElement.value != "")
+        {
+            localStorage.setItem("name", nameElement.value);
+        }
+    }
+
     if(message != "" && message != "" && name != "" && name != " ") {
         messages.push(JSON.stringify({ message: message, date: dateTime.getDate(), month: dateTime.getMonth(), year: dateTime.getFullYear(), hour: hour, min: min, name: name }))
         update();
@@ -122,13 +131,20 @@ function sendMessage() {
         document.querySelector("#text").value = '';
     }
 
-    $("#result").stop().animate({ scrollTop: $("#result")[0].scrollHeight}, 1000);
+    $("#result").stop().animate({ scrollTop: $("#result")[0].scrollHeight}, 500);
    
 }
 
 function clearAll() {
 
 }
+
+window.addEventListener("load", () => {
+    if(localStorage.getItem("name") != null) {
+        document.querySelector("#name").value = localStorage.getItem("name");
+        document.querySelector("#name").disabled = true;
+    }
+});
 
 
 setInterval(() => {
