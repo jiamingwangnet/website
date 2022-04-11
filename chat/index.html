@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="A website for my games and projects">
+    <meta name="keywords" content="Games, Projects, Jitsit, Jiaming, Jiaming Wang" />
+    <meta name="author" content="Jiaming Wang">
+    <meta name="application-name" content="Jitsit">
+
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate&display=swap" rel="stylesheet">
@@ -115,16 +120,14 @@
         const isHover = e => e.parentElement.querySelector(':hover') === e;
 
         const myDiv = document.getElementById('result');
-        
+
         document.addEventListener('mousemove', function checkHover() {
             const hovered = isHover(myDiv);
             if (hovered !== checkHover.hovered) {
-                if(hovered)
-                {
+                if (hovered) {
                     myDiv.focus();
                 }
-                else 
-                {
+                else {
                     myDiv.blur();
                 }
                 checkHover.hovered = hovered;
