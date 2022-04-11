@@ -235,6 +235,7 @@ a {
 button {
     border: none;
     transition: 0.5s;
+    background-color: #1279a8;
 }
 
 button:hover {
