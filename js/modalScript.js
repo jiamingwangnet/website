@@ -3,6 +3,7 @@ function OpenModal(modalId) {
     let modal = document.getElementById(modalId);
 
     modal.style.display = "block";
+    modal.setAttribute("aria-hidden", "false");
     modal.onclick = modal.focus();
     document.body.style.overflow = "hidden";
 
@@ -15,6 +16,7 @@ function OpenModal(modalId) {
             setTimeout(() => {
                 modal.className = modal.className.replace(" modal2", "");
                 modal.style.display = "none";
+                modal.setAttribute("aria-hidden", "true");
             }, 250);
             modal.className += " modal2";
             document.body.style.overflowY = "overlay";
@@ -27,6 +29,7 @@ function OpenModal(modalId) {
             setTimeout(() => {
                 modal.className = modal.className.replace(" modal2", "");
                 modal.style.display = "none";
+                modal.setAttribute("aria-hidden", "true");
             }, 250);
             modal.className += " modal2";
             document.body.style.overflowY = "overlay";

@@ -11,6 +11,16 @@ class Item {
         // generate item
         this.item = document.createElement("div");
         this.item.classList.add("bg-image");
+
+        // accessibility attributes
+        this.item.setAttribute("role", "button");
+        this.item.tabIndex = 0;
+        this.item.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                this.item.click();
+            }
+        })
+
         this.item.style = `background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),  url(${backgroundImage});`;
         this.item.onclick = () => {OpenModal(name);};
 
@@ -53,6 +63,11 @@ class Item {
         this.popup.classList.add("modal_");
         this.popup.id = name;
 
+        //accessibility attributes
+        this.popup.setAttribute("role", "dialog");
+        this.popup.setAttribute("data-closable", "");
+        this.popup.setAttribute("aria-hidden", "true");
+
         const popupContent = document.createElement("div");
         popupContent.classList.add("modal-content_");
         popupContent.style = `background-image: linear-gradient(rgba(0, 0, 0, 0.671), rgba(0, 0, 0, 0.877)),
@@ -64,6 +79,18 @@ class Item {
         const closeButton = document.createElement("span");
         closeButton.classList.add("close_");
         closeButton.innerHTML = "&times;";
+
+        //button accessibility attributes
+        closeButton.setAttribute("role", "button");
+        closeButton.setAttribute("aria-label", "close popup");
+        closeButton.setAttribute("data-close", "");
+        closeButton.setAttribute("aria-hidden", "true");
+        closeButton.setAttribute("tabIndex", 0);
+        closeButton.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                closeButton.click();
+            }
+        });
 
         const navTitle = document.createElement("h1");
         navTitle.innerText = name;
