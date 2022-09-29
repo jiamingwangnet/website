@@ -19,7 +19,7 @@ function OpenModal(modalId) {
                 modal.setAttribute("aria-hidden", "true");
             }, 250);
             modal.className += " modal2";
-            document.body.style.overflowY = "overlay";
+            document.body.style.overflowY = "scroll";
         }
     }
 
@@ -32,7 +32,7 @@ function OpenModal(modalId) {
                 modal.setAttribute("aria-hidden", "true");
             }, 250);
             modal.className += " modal2";
-            document.body.style.overflowY = "overlay";
+            document.body.style.overflowY = "scroll";
         }
     }
 }

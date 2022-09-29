@@ -2,7 +2,6 @@ body {
     padding: 0;
     margin: 0;
     background-color: rgb(26, 26, 26);
-    overflow-y: overlay;
 }
 
 .titleWrapper {
